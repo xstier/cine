@@ -1,0 +1,31 @@
+$btnColor: #333;
+$btnText: #ddd;
+$maincolor: skyblue;
+body {
+  background-color: $maincolor;
+}
+
+button {
+  background: $btnColor;
+  color: $btnText;
+  border-radius: 25px;
+  width: 10rem;
+}
+
+form {
+  display: flex;
+  flex-flow: column nowrap;
+
+  div {
+    display: flex;
+    flex-flow: row nowrap;
+    padding-bottom: 0.3rem;
+    align-items: center;
+    label {
+      width: 10rem;
+    }
+    button {
+      align-self: center;
+    }
+  }
+}
