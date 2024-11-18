@@ -1,15 +1,39 @@
 $btnColor: #333;
 $btnText: #ddd;
 $maincolor: skyblue;
+$titleTableColor: #222;
 body {
   background-color: $maincolor;
 }
 
+a {
+  text-decoration: none;
+  color: $btnText;
+}
 button {
   background: $btnColor;
   color: $btnText;
   border-radius: 25px;
   width: 10rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+table {
+  thead,
+  th {
+    background: $titleTableColor;
+    color: $btnText;
+  }
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background: $btnColor;
+        color: $btnText;
+      }
+    }
+  }
 }
 
 form {
@@ -28,4 +52,9 @@ form {
       align-self: center;
     }
   }
+}
+
+.show {
+  display: flex;
+  flex-flow: row nowrap;
 }
