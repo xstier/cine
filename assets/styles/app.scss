@@ -2,8 +2,14 @@ $btnColor: #333;
 $btnText: #ddd;
 $maincolor: skyblue;
 $titleTableColor: #222;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   background-color: $maincolor;
+  justify-items: center;
 }
 
 a {
@@ -17,6 +23,23 @@ button {
   width: 10rem;
   &:hover {
     cursor: pointer;
+  }
+}
+
+header {
+  width: 100vh;
+  nav {
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      li {
+        a {
+          font-size: larger;
+        }
+      }
+    }
   }
 }
 
