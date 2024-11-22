@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FilmsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -40,6 +42,17 @@ class Films
 
     #[ORM\Column]
     private ?int $duree = null;
+
+    /**
+     * @var Collection<int, Seances>
+     */
+    #[ORM\OneToMany(targetEntity: Seances::class, mappedBy: 'Films')]
+    private Collection $films;
+
+    public function __construct()
+    {
+        $this->films = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -157,6 +170,36 @@ class Films
     public function setDuree(int $duree): static
     {
         $this->duree = $duree;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Seances>
+     */
+    public function getFilms(): Collection
+    {
+        return $this->films;
+    }
+
+    public function addFilm(Seances $film): static
+    {
+        if (!$this->films->contains($film)) {
+            $this->films->add($film);
+            $film->setFilms($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilm(Seances $film): static
+    {
+        if ($this->films->removeElement($film)) {
+            // set the owning side to null (unless already changed)
+            if ($film->getFilms() === $this) {
+                $film->setFilms(null);
+            }
+        }
 
         return $this;
     }
